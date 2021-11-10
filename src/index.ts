@@ -67,3 +67,75 @@ function log(message: string | number): void {
 }
 log(1)
 log('hello')
+
+//interface
+
+interface iUser {
+  readonly id: number, //can have read only properties
+  name: string
+  age?: number //? is optional
+}
+
+const user1: iUser = {
+  id: 1,
+  name: 'john'
+}
+
+interface MathFunc {
+  (x: number, y: number): number
+}
+
+const add: MathFunc = (x: number, y: number): number => x + y
+const sub: MathFunc = (x: number, y: number): number => x - y
+
+// classes
+
+interface iPerson {
+  id: number
+  name: string
+  register(): string
+}
+class Person implements iPerson {
+  id: number //can add access modifyers like public, private, protected
+  name: string
+
+  constructor(id: number, name: string) {
+    this.id = id,
+    this.name = name
+  }
+
+  register() {
+    return `${this.name} is now registered!`
+  }
+}
+
+const testy = new Person(123, "testy")
+
+testy.id = 5
+
+console.log(testy.register())
+
+class Employee extends Person {
+  position: string
+
+  constructor(id: number, name: string, position: string) {
+    super(id, name)
+    this.position = position
+  }
+}
+
+const emp = new Employee(1234, "McTesterson", "developer")
+
+console.log(emp.register())
+console.log(emp.position)
+
+// generics
+
+function getArray<T>(items: T[]): T[] {
+  return new Array().concat(items)
+}
+
+let numArr = getArray<number>([1,2,3,4])
+let strArr = getArray<string>(["hello", "world", "everyone"])
+
+numArr.push(1)

@@ -53,3 +53,30 @@ function log(message) {
 }
 log(1);
 log('hello');
+const user1 = {
+    id: 1,
+    name: 'john'
+};
+const add = (x, y) => x + y;
+const sub = (x, y) => x - y;
+class Person {
+    constructor(id, name) {
+        this.id = id,
+            this.name = name;
+    }
+    register() {
+        return `${this.name} is now registered!`;
+    }
+}
+const testy = new Person(123, "testy");
+testy.id = 5;
+console.log(testy.register());
+class Employee extends Person {
+    constructor(id, name, position) {
+        super(id, name);
+        this.position = position;
+    }
+}
+const emp = new Employee(1234, "McTesterson", "developer");
+console.log(emp.register());
+console.log(emp.position);
